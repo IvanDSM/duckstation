@@ -1,5 +1,6 @@
 #pragma once
 #include "core/host_display.h"
+#include "libretro.h"
 
 class LibretroHostDisplay final : public HostDisplay
 {
@@ -40,4 +41,15 @@ public:
   void SetVSync(bool enabled) override;
 
   bool Render() override;
+
+  bool BeginSetDisplayPixels(DisplayPixelFormat format, u32 width, u32 height, void** out_buffer,
+                             u32* out_pitch) override;
+  void EndSetDisplayPixels() override;
+
+  bool SetDisplayPixels(DisplayPixelFormat format, u32 width, u32 height, const void* buffer, u32 pitch) override;
+
+private:
+  std::vector<u32> m_frame_buffer;
+  u32 m_frame_buffer_pitch = 0;
+  retro_framebuffer m_software_fb = {};
 };
