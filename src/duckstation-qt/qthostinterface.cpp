@@ -590,9 +590,6 @@ bool QtHostInterface::SetFullscreen(bool enabled)
 void QtHostInterface::PollAndUpdate()
 {
   CommonHostInterface::PollAndUpdate();
-
-  if (m_controller_interface)
-    m_controller_interface->PollEvents();
 }
 
 void QtHostInterface::RequestExit()

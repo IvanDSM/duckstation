@@ -422,6 +422,9 @@ void CommonHostInterface::PollAndUpdate()
 #ifdef WITH_DISCORD_PRESENCE
   PollDiscordPresence();
 #endif
+
+  if (m_controller_interface)
+    m_controller_interface->PollEvents();
 }
 
 bool CommonHostInterface::IsFullscreen() const
